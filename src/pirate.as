@@ -6,7 +6,7 @@ package
   {
     public function pirate()
     {
-      
+      var loader:MultiLoader = new MultiLoader();
     }
   }
 }
