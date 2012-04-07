@@ -5,8 +5,6 @@ package
   import flash.events.Event;
   import flash.events.ProgressEvent;
   import flash.net.URLRequest;
-  
-  import org.osmf.events.LoaderEvent;
 
   public class MultiLoader
   {
@@ -50,19 +48,16 @@ package
     private function onProgress(event:ProgressEvent):void{
       var name:String = (event.currentTarget as LoaderInfo).loader.name;
       var totalProgress:ProgressData;
-//      if(bites.indexOf(name) == -1){
-//        bites.push(name);
-//        trace(this + " onProgress | "+name+" | bytesTotal: " + event.bytesTotal);
-//      }
       totalProgress = progressManager.addData(name, ProgressData.factory(event.bytesTotal, event.bytesLoaded));
-      trace('totalProgress.loaded: ',totalProgress.loaded);
-      trace('totalProgress.total: ',totalProgress.total);
-      trace('PERCENT: ',totalProgress.loaded/totalProgress.total);
-      pirate.progress.progress = totalProgress.loaded/totalProgress.total;
+//      trace('totalProgress.loaded: ',totalProgress.loaded);
+//      trace('totalProgress.total: ',totalProgress.total);
+//      trace('PERCENT: ',totalProgress.loaded/totalProgress.total);
+      if(sourses.length == progressManager.listLen){
+        pirate.progress.progress = (totalProgress.loaded/totalProgress.total);
+      }
     }
     private function onComplete(event:Event):void{
       var urlParts:Array = (event.currentTarget as LoaderInfo).url.split("/");
-//      trace(this + " onComplete | url: " + urlParts[urlParts.length-1]);
     }
   }
 }
@@ -70,6 +65,7 @@ package
 internal class ProgressDataHolder{
   internal var keys:Vector.<String> = new <String>[];
   internal var values:Vector.<ProgressData> = new <ProgressData>[];
+  public function get listLen():uint{ return keys.length; }
   public function addData(key:String, data:ProgressData):ProgressData{
     var i:int = keys.indexOf(key);
     var totatProgress:ProgressData = new ProgressData();
