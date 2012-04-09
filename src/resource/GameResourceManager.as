@@ -31,7 +31,9 @@ package resource
       return holder;
     }
     
-    public function loadSourceByInst(func: Function, swfName:String, instName: String, cpFlag:Boolean = false):DisplayObjectContainer{
+    public function loadSourceByInst(swfName:String, instName: String, cpFlag:Boolean = false):DisplayObjectContainer{
+      var mediator:IResourceMediator = new SpriteMediator();
+      super.LoadSourceByInst(mediator.callback, "LibDialog_ru.swf", 
       throw new IllegalOperationError("loadSourceByInst not implementet yet in " + this);
     }
     public function loadSourceByClass(func: Function, swfName:String, className: String):DisplayObjectContainer{
