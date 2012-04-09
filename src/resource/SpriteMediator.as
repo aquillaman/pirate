@@ -12,7 +12,7 @@ package resource
     public function get callback():Function { return callbackHandler; }
     
     private function callbackHandler(obj:*):void{
-      trace(this + "received: " + obj)obj;
+      trace(this + "received: " + obj);
     }
   }
 }

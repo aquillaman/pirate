@@ -31,13 +31,17 @@ package resource
       return holder;
     }
     
-    public function loadSourceByInst(swfName:String, instName: String, cpFlag:Boolean = false):DisplayObjectContainer{
+    public function loadSourceByInst(swfName:String, instName: String, cpFlag:Boolean = false):IResourceMediator{
       var mediator:IResourceMediator = new SpriteMediator();
-      super.LoadSourceByInst(mediator.callback, "LibDialog_ru.swf", 
-      throw new IllegalOperationError("loadSourceByInst not implementet yet in " + this);
+      super.LoadSourceByInst(mediator.callback, swfName, instName, cpFlag);
+      
+      return mediator;
     }
-    public function loadSourceByClass(func: Function, swfName:String, className: String):DisplayObjectContainer{
-      throw new IllegalOperationError("loadSourceByClass not implementet yet in " + this);
+    public function loadSourceByClass(swfName:String, className: String):IResourceMediator{
+      var mediator:IResourceMediator = new SpriteMediator();
+      super.LoadSourceByClass(mediator.callback, swfName, className);
+      
+      return mediator;
     }
   }
 }

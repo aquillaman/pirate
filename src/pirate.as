@@ -6,6 +6,7 @@ package
   
   import resource.GameResourceManager;
   import resource.IResourceManager;
+  import resource.IResourceMediator;
   
   public class pirate extends Sprite
   {
@@ -20,7 +21,8 @@ package
     }
     
     private function onStageClicked(event:MouseEvent):void{
-      grm.loadSourceByClass(onResourceLoaded, "LidDialog.swf", "img");
+      var some:IResourceMediator;
+      stage.addChild(some = grm.loadSourceByClass("LidDialog.swf", "img") );
     }
     
     private function onResourceLoaded(holder:DisplayObjectContainer):void{

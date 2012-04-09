@@ -1,6 +1,8 @@
 package resource
 {
-  public interface IResourceMediator
+  import flash.display.DisplayObjectContainer;
+
+  public interface IResourceMediator implements DisplayObjectContainer
   {
     function get callback():Function;
   }
