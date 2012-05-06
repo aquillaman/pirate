@@ -1,10 +1,23 @@
 package view
 {
+	import model.CellModell;
+	
+	import utils.UiUtil;
+
 	public class CellView extends BaseView
 	{
-		public function CellView()
+		private var _cellData:CellModell
+		
+		private function makeStroke():void
 		{
-			super();
+			addChild(UiUtil.getFilledSquare(20,20));
+		}
+		
+		public function set cellData(value:CellModell):void 
+		{
+			_cellData = value;
+			
+			makeStroke();
 		}
 	}
 }
