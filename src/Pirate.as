@@ -34,7 +34,7 @@ package
 			app.layerManager.mapLayer.addChild(FieldView.create(field = new FieldModel()));
 			app.layerManager.walkersLayer.addChild(new WalkerView(walker = new WalkerModel()));
 			
-			walkerMdr = WalkerMediator.create(walker, field.field);
+			walkerMdr = WalkerMediator.create(walker, field);
 			
 			app.layerManager.btnsLayer.addChild(btn = TestButton.factory(new Point(0,250), "Do some With walker"));
 			btn.addEventListener(MouseEvent.CLICK, function onClick(event:MouseEvent):void{
