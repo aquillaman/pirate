@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controlls:BaseControlls xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						 xmlns:s="library://ns.adobe.com/flex/spark" 
+						 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controlls="elements.controlls.*">
+	<fx:Script>
+		<![CDATA[
+			import elements.ImageModul;
+			
+			import mx.core.UIComponent;
+			
+			private var someImage:ImageModul;
+			
+			public function setTarget(target:UIComponent):void{
+				this.someImage = target as ImageModul;
+			}
+			
+			override protected function ajustWidth(event:Event):void {
+				someImage.setWidth(width_slider.value);
+			}
+			override protected function ajustHeight(event:Event):void {
+				someImage.setHeight(height_slider.value);
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:HSlider id="width_slider" x="10" y="41" width="128"
+			   change="ajustWidth(event)" maximum="180" minimum="1"
+			   stepSize="1"/>
+	<s:HSlider id="height_slider" x="10" y="86" width="128"
+			   change="ajustHeight(event)" maximum="100" minimum="1"
+			   stepSize="1"/>
+	<s:TextInput x="54" y="11" width="40" text="{width_slider.value}"/>
+	<s:TextInput x="54" y="56" width="40" text="{height_slider.value}"/>
+</controlls:BaseControlls>

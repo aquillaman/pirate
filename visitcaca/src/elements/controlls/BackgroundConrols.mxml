@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controlls:BaseControlls xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:local="*" xmlns:elements="elements.*" xmlns:controlls="elements.controlls.*"
+		  >
+	<fx:Script>
+		<![CDATA[
+			import elements.Background;
+			import mx.core.UIComponent;
+			import mx.events.ColorPickerEvent;
+			
+			private var visit_back:Background;
+			public function setTarget(target:UIComponent):void{
+				this.visit_back = target as Background;
+			}
+			
+			override protected function ajustWidth(event:Event):void {
+				visit_back.setWidth(width_slider.value);
+			}
+			override protected function ajustHeight(event:Event):void {
+				visit_back.setHeight(height_slider.value);
+			}
+			
+			protected function setFillColor(event:ColorPickerEvent):void {
+				visit_back.setBgColor(event.color);
+			}
+			
+			protected function checkbox1_changeHandler(event:Event):void {
+				rounding_slider.enabled = rounding_text.enabled = use_rounding.selected;
+				if( use_rounding.selected ){
+					visit_back.setRounding(rounding_slider.value);
+				} else {
+					
+					visit_back.setRounding(0);
+				}
+			}
+			
+			protected function ajustRounding(event:Event):void {
+				visit_back.setRounding(rounding_slider.value);
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:HSlider id="width_slider" x="10" y="41" width="128"
+			   change="ajustWidth(event)" maximum="180" minimum="90"
+			   stepSize="1"/>
+	<s:HSlider id="height_slider" x="10" y="86" width="128"
+			   change="ajustHeight(event)" maximum="100" minimum="50"
+			   stepSize="1"/>
+	<s:TextInput x="54" y="11" width="40" text="{width_slider.value}"/>
+	<s:TextInput x="54" y="56" width="40" text="{height_slider.value}"/>
+	<mx:ColorPicker x="237" y="10" change="setFillColor(event)"/>
+	<s:CheckBox id="use_rounding" x="195" y="79" label="Use Rounding" change="checkbox1_changeHandler(event)"/>
+	
+	<s:HSlider id="rounding_slider" x="195" y="135" width="128"
+			   change="ajustRounding(event)" maximum="10" minimum="1"
+			   stepSize="1"/>
+	<s:TextInput id="rounding_text" x="234" y="105" width="45" text="{rounding_slider.value}"/>
+</controlls:BaseControlls>

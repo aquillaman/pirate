@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<elements:Controllable xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:local="*" xmlns:elements="elements.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import elements.controlls.BackgroundConrols;
+			import mx.core.UIComponent;
+			
+			[Bindable]
+			public var rounding:int = 0;
+			
+			public function setBgColor(color:uint):void{
+				fill_color.color = color;
+			}
+			
+			public function setRounding(value:uint):void{
+				rounding = value;
+			}
+			
+			override public function get controllsPanelModule():UIComponent{
+				if(!controlls) {
+					controlls = new BackgroundConrols();
+					BackgroundConrols(controlls).setTarget(this);
+				}
+				return controlls;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Rect width="{mm2pix(_width)}" height="{mm2pix(_height)}"
+			topLeftRadiusX="{mm2pix(rounding)}" topLeftRadiusY="{mm2pix(rounding)}" topRightRadiusX="{mm2pix(rounding)}" topRightRadiusY="{mm2pix(rounding)}"
+			bottomLeftRadiusX="{mm2pix(rounding)}" bottomLeftRadiusY="{mm2pix(rounding)}" bottomRightRadiusX="{mm2pix(rounding)}" bottomRightRadiusY="{mm2pix(rounding)}"
+			>			
+		<s:stroke>
+			<s:SolidColorStroke id="stroke_color" color="#000000" weight="1"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor id="fill_color" color="0xcccccc"/>
+		</s:fill>
+	</s:Rect>
+	
+</elements:Controllable>
